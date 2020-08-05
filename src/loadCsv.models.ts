@@ -1,5 +1,11 @@
 export interface CsvReadOptions {
+  /**
+   * Names of the columns to be included in the features and testFeatures tensors.
+   */
   featureColumns: string[];
+  /**
+   * Names of the columns to be included in the labels and testLabels tensors.
+   */
   labelColumns: string[];
   /**
    * If true, shuffles all rows.
@@ -16,7 +22,7 @@ export interface CsvReadOptions {
    */
   prependOnes?: boolean;
   /**
-   * If true, calculates the standard deviation for each feature and testFeature column and standardises the values in those columns. Does not touch labels.
+   * If true, calculates mean and variance for each feature column using data only in features, then standardises the values in features and testFeatures. Does not touch labels.
    */
   standardise?: boolean;
 }

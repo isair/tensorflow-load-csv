@@ -53,6 +53,6 @@ const {
   shuffle: true,
   splitTest: true,   // Splits your data in half. You can also provide a certain row count for the test data.
   prependOnes: true, // Prepends a column of 1s to your features and testFeatures tensors, useful for linear regression.
-  standardise: true, // Calculates the standard deviation for each feature and testFeature column and standardises the values in those columns. Does not touch labels.
+  standardise: true, // Calculates mean and variance for each feature column using data only in features, then standardises the values in features and testFeatures. Does not touch labels.
 });
 ```
