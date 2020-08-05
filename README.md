@@ -30,6 +30,9 @@ const { features, labels } = loadCsv('./data.csv', {
   featureColumns: ['lat', 'lng', 'height'],
   labelColumns: ['temperature'],
 });
+
+features.print();
+labels.print();
 ```
 
 Advanced usage:
@@ -41,14 +44,23 @@ const {
   labels,
   testFeatures,
   testLabels,
-  mean,    // tensor holding mean of features, ignores testFeatures
-  variance // tensor holding variance of features, ignores testFeatures
+  mean, // tensor holding mean of features, ignores testFeatures
+  variance, // tensor holding variance of features, ignores testFeatures
 } = loadCsv('./data.csv', {
   featureColumns: ['lat', 'lng', 'height'],
   labelColumns: ['temperature'],
   shuffle: true,
-  splitTest: true,   // Splits your data in half. You can also provide a certain row count for the test data.
+  splitTest: true, // Splits your data in half. You can also provide a certain row count for the test data.
   prependOnes: true, // Prepends a column of 1s to your features and testFeatures tensors, useful for linear regression.
   standardise: true, // Calculates mean and variance for each feature column using data only in features, then standardises the values in features and testFeatures. Does not touch labels.
 });
+
+features.print();
+labels.print();
+
+testFeatures.print();
+testLabels.print();
+
+mean.print();
+variance.print();
 ```
