@@ -8,9 +8,11 @@ export interface CsvReadOptions {
    */
   labelColumns: string[];
   /**
-   * If true, shuffles all rows.
+   * If true, shuffles all rows with a fixed seed, meaning that shuffling the same data will always result in the same shuffled data.
+   *
+   * You pass a string instead of a boolean to customise the shuffle seed.
    */
-  shuffle?: boolean;
+  shuffle?: boolean | string;
   /**
    * If true, splits your features and labels in half and moves them into testFeatures and testLabels.
    *
@@ -26,3 +28,5 @@ export interface CsvReadOptions {
    */
   standardise?: boolean;
 }
+
+export type CsvTable = (string | number)[][];
