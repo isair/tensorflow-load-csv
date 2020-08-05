@@ -47,8 +47,8 @@ const loadCsv = (filename: string, options: CsvReadOptions) => {
 
   if (splitTest) {
     const length =
-      typeof splitTest === 'number' && splitTest > 0
-        ? splitTest
+      typeof splitTest === 'number'
+        ? Math.max(0, Math.min(splitTest, features.length - 1))
         : Math.floor(features.length / 2);
 
     testFeatures = features.slice(length);
