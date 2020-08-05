@@ -11,22 +11,19 @@ A library that aims to remove the overhead of creating tensors from CSV files co
 ## Installation
 
 NPM:
-sh
-```
+```sh
 npm install tensorflow-load-csv
 ```
 
 Yarn:
-sh
-```
+```sh
 yarn add tensorflow-load-csv
 ```
 
 ## Usage
 
 Simple usage:
-js
-```
+```js
 import loadCsv from 'tensorflow-load-csv';
 
 const { features, labels } = loadCsv('./data.csv', {
@@ -36,8 +33,7 @@ const { features, labels } = loadCsv('./data.csv', {
 ```
 
 Advanced usage:
-js
-```
+```js
 import loadCsv from 'tensorflow-load-csv';
 
 const {
