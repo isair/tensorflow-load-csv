@@ -52,6 +52,30 @@ test('Shuffling should work and preserve feature - label pairs', () => {
   ]);
 });
 
+test('Shuffling with a custom seed should work', () => {
+  const { features, labels } = loadCsv(filePath, {
+    featureColumns: ['lat', 'lng'],
+    labelColumns: ['country'],
+    shuffle: 'hello-is-it-me-you-are-looking-for',
+  });
+  // @ts-ignore
+  expect(features.arraySync()).toBeDeepCloseTo(
+    [
+      [5, 40.34],
+      [102, -164],
+      [0.234, 1.47],
+      [-93.2, 103.34],
+    ],
+    3
+  );
+  expect(labels.arraySync()).toMatchObject([
+    ['Landistan'],
+    ['Landotzka'],
+    ['SomeCountria'],
+    ['SomeOtherCountria'],
+  ]);
+});
+
 test('Loading with all extra options other than shuffle as true should work', () => {
   const {
     features,

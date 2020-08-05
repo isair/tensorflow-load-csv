@@ -3,10 +3,28 @@ import fs from 'fs';
 import * as tf from '@tensorflow/tfjs';
 import { shuffle } from 'shuffle-seed';
 
-import { CsvReadOptions } from './loadCsv.models';
+import { CsvReadOptions, CsvTable } from './loadCsv.models';
 import filterColumns from './filterColumns';
 
-const shuffleSeed = 'mncv9340ur'; // TODO: Randomise this.
+const defaultShuffleSeed = 'mncv9340ur';
+
+const splitTestData = (
+  features: CsvTable,
+  labels: CsvTable,
+  splitTest: boolean | number
+) => {
+  const length =
+    typeof splitTest === 'number'
+      ? Math.max(0, Math.min(splitTest, features.length - 1))
+      : Math.floor(features.length / 2);
+
+  return {
+    testFeatures: features.slice(length),
+    testLabels: labels.slice(length),
+    features: features.slice(0, length),
+    labels: labels.slice(0, length),
+  };
+};
 
 const loadCsv = (filename: string, options: CsvReadOptions) => {
   const {
@@ -32,58 +50,53 @@ const loadCsv = (filename: string, options: CsvReadOptions) => {
           })
     );
 
-  let labels = filterColumns(data, labelColumns);
-  let features = filterColumns(data, featureColumns);
-  let testFeatures: (string | number)[][] = [];
-  let testLabels: (string | number)[][] = [];
+  const tables: { [key: string]: CsvTable } = {
+    labels: filterColumns(data, labelColumns),
+    features: filterColumns(data, featureColumns),
+    testFeatures: [],
+    testLabels: [],
+  };
 
-  features.shift();
-  labels.shift();
+  tables.labels.shift();
+  tables.features.shift();
 
   if (shouldShuffle) {
-    features = shuffle(features, shuffleSeed);
-    labels = shuffle(labels, shuffleSeed);
+    const seed =
+      typeof shouldShuffle === 'string' ? shouldShuffle : defaultShuffleSeed;
+    tables.features = shuffle(tables.features, seed);
+    tables.labels = shuffle(tables.labels, seed);
   }
 
   if (splitTest) {
-    const length =
-      typeof splitTest === 'number'
-        ? Math.max(0, Math.min(splitTest, features.length - 1))
-        : Math.floor(features.length / 2);
-
-    testFeatures = features.slice(length);
-    testLabels = labels.slice(length);
-    features = features.slice(0, length);
-    labels = labels.slice(0, length);
+    Object.assign(
+      tables,
+      splitTestData(tables.features, tables.labels, splitTest)
+    );
   }
 
-  let featuresTensor = tf.tensor(features);
-  let testFeaturesTensor = tf.tensor(testFeatures);
+  let features = tf.tensor(tables.features);
+  let testFeatures = tf.tensor(tables.testFeatures);
 
-  const labelsTensor = tf.tensor(labels);
-  const testLabelsTensor = tf.tensor(testLabels);
+  const labels = tf.tensor(tables.labels);
+  const testLabels = tf.tensor(tables.testLabels);
 
-  const { mean, variance } = tf.moments(featuresTensor, 0);
+  const { mean, variance } = tf.moments(features, 0);
 
   if (standardise) {
-    featuresTensor = featuresTensor.sub(mean).div(variance.pow(0.5));
-    testFeaturesTensor = testFeaturesTensor.sub(mean).div(variance.pow(0.5));
+    features = features.sub(mean).div(variance.pow(0.5));
+    testFeatures = testFeatures.sub(mean).div(variance.pow(0.5));
   }
 
   if (prependOnes) {
-    featuresTensor = tf
-      .ones([featuresTensor.shape[0], 1])
-      .concat(featuresTensor, 1);
-    testFeaturesTensor = tf
-      .ones([testFeaturesTensor.shape[0], 1])
-      .concat(testFeaturesTensor, 1);
+    features = tf.ones([features.shape[0], 1]).concat(features, 1);
+    testFeatures = tf.ones([testFeatures.shape[0], 1]).concat(testFeatures, 1);
   }
 
   return {
-    features: featuresTensor,
-    labels: labelsTensor,
-    testFeatures: testFeaturesTensor,
-    testLabels: testLabelsTensor,
+    features,
+    labels,
+    testFeatures,
+    testLabels,
     mean,
     variance,
   };

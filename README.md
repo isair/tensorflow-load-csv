@@ -49,7 +49,7 @@ const {
 } = loadCsv('./data.csv', {
   featureColumns: ['lat', 'lng', 'height'],
   labelColumns: ['temperature'],
-  shuffle: true,
+  shuffle: true, // Pass true to shuffle with a fixed seed, or a string to use it as a seed for the shuffling.
   splitTest: true, // Splits your data in half. You can also provide a certain row count for the test data.
   prependOnes: true, // Prepends a column of 1s to your features and testFeatures tensors, useful for linear regression.
   standardise: true, // Calculates mean and variance for each feature column using data only in features, then standardises the values in features and testFeatures. Does not touch labels.
