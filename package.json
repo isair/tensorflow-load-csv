@@ -38,7 +38,7 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^9.1.1",
     "@tensorflow/tfjs": "^2.1.0",
-    "@tensorflow/tfjs-node": "^2.0.1",
+    "@tensorflow/tfjs-node": "^2.1.0",
     "@types/jest": "^26.0.8",
     "@types/node": "^10.0.0",
     "@types/shuffle-seed": "^1.1.0",
