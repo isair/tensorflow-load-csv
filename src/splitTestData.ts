@@ -5,16 +5,18 @@ const splitTestData = (
   labels: CsvTable,
   splitTest: true | number
 ) => {
-  const length =
+  const dataLength = features.length;
+  const testLength =
     typeof splitTest === 'number'
-      ? Math.max(0, Math.min(splitTest, features.length - 1))
+      ? Math.max(0, Math.min(splitTest, dataLength))
       : Math.floor(features.length / 2);
+  const testStartIndex = dataLength - testLength;
 
   return {
-    testFeatures: features.slice(length),
-    testLabels: labels.slice(length),
-    features: features.slice(0, length),
-    labels: labels.slice(0, length),
+    features: features.slice(0, testStartIndex),
+    labels: labels.slice(0, testStartIndex),
+    testFeatures: features.slice(testStartIndex),
+    testLabels: labels.slice(testStartIndex),
   };
 };
 
