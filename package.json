@@ -65,7 +65,7 @@
     "rollup-plugin-typescript2": "^0.27.1",
     "semantic-release": "^17.1.1",
     "ts-jest": "^26.1.4",
-    "typescript": "^3.9.7"
+    "typescript": "^4.0.2"
   },
   "peerDependencies": {
     "@tensorflow/tfjs": "^2.0.1"
