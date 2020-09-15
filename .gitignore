@@ -24,3 +24,4 @@ pnpm-debug.log*
 dist
 docs
 coverage
+shrinkwrap.yaml

@@ -8,6 +8,13 @@ export interface CsvReadOptions {
    */
   labelColumns: string[];
   /**
+   * Used for transforming values of entire columns. Key is column label, value is transformer function. Each value belonging to
+   * that column will be put through the transformer function and be overwritten with the return value of it.
+   */
+  mappings?: {
+    [columnName: string]: (value: string | number) => string | number;
+  };
+  /**
    * If true, shuffles all rows with a fixed seed, meaning that shuffling the same data will always result in the same shuffled data.
    *
    * You can pass a string instead of a boolean to customise the shuffle seed.

@@ -6,6 +6,7 @@ import { shuffle } from 'shuffle-seed';
 import { CsvReadOptions, CsvTable } from './loadCsv.models';
 import filterColumns from './filterColumns';
 import splitTestData from './splitTestData';
+import applyMappings from './applyMappings';
 
 const defaultShuffleSeed = 'mncv9340ur';
 
@@ -13,6 +14,7 @@ const loadCsv = (filename: string, options: CsvReadOptions) => {
   const {
     featureColumns,
     labelColumns,
+    mappings = {},
     shuffle: shouldShuffle = false,
     splitTest = false,
     prependOnes = false,
@@ -42,6 +44,10 @@ const loadCsv = (filename: string, options: CsvReadOptions) => {
 
   tables.labels.shift();
   tables.features.shift();
+
+  for (const key of Object.keys(tables)) {
+    tables[key] = applyMappings(tables[key], mappings);
+  }
 
   if (shouldShuffle) {
     const seed =
