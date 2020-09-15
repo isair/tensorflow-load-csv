@@ -9,9 +9,13 @@ const applyMappings = (
   }
   const mappingsByIndex = table[0].map((columnName) => mappings[columnName]);
   return table.map((row, index) =>
-    index === 0 || !mappingsByIndex[index]
+    index === 0
       ? row
-      : row.map((value) => mappingsByIndex[index](value))
+      : row.map((value, columnIndex) =>
+          mappingsByIndex[columnIndex]
+            ? mappingsByIndex[columnIndex](value)
+            : value
+        )
   );
 };
 
