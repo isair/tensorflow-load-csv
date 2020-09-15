@@ -35,19 +35,17 @@ const loadCsv = (filename: string, options: CsvReadOptions) => {
           })
     );
 
+  const mappedData = applyMappings(data, mappings);
+
   const tables: { [key: string]: CsvTable } = {
-    labels: filterColumns(data, labelColumns),
-    features: filterColumns(data, featureColumns),
+    labels: filterColumns(mappedData, labelColumns),
+    features: filterColumns(mappedData, featureColumns),
     testFeatures: [],
     testLabels: [],
   };
 
   tables.labels.shift();
   tables.features.shift();
-
-  for (const key of Object.keys(tables)) {
-    tables[key] = applyMappings(tables[key], mappings);
-  }
 
   if (shouldShuffle) {
     const seed =

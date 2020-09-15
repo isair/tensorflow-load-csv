@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/isair/tensorflow-load-csv#readme",
   "devDependencies": {
-    "@commitlint/config-conventional": "^11.0.0",
+    "@commitlint/config-conventional": "^9.1.1",
     "@tensorflow/tfjs": "^2.1.0",
     "@tensorflow/tfjs-node": "^2.1.0",
     "@types/jest": "^26.0.8",
@@ -44,7 +44,7 @@
     "@types/shuffle-seed": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^3.8.0",
     "@typescript-eslint/parser": "^3.7.1",
-    "commitlint": "^11.0.0",
+    "commitlint": "^9.1.0",
     "danger": "^10.3.0",
     "eslint": "^6.0.0",
     "eslint-config-prettier": "^6.11.0",
@@ -65,7 +65,7 @@
     "rollup-plugin-typescript2": "^0.27.1",
     "semantic-release": "^17.1.1",
     "ts-jest": "^26.1.4",
-    "typescript": "^4.0.2"
+    "typescript": "^3.9.7"
   },
   "peerDependencies": {
     "@tensorflow/tfjs": "^2.0.1"
