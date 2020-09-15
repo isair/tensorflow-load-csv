@@ -11,7 +11,7 @@ export interface CsvReadOptions {
    * Used for transforming values of entire columns. Key is column label, value is transformer function. Each value belonging to
    * that column will be put through the transformer function and be overwritten with the return value of it.
    */
-  mappings: {
+  mappings?: {
     [columnName: string]: (value: string | number) => string | number;
   };
   /**

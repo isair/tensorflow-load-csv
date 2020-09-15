@@ -45,8 +45,8 @@ const loadCsv = (filename: string, options: CsvReadOptions) => {
   tables.labels.shift();
   tables.features.shift();
 
-  for (const table of Object.values(tables)) {
-    applyMappings(table, mappings);
+  for (const key of Object.keys(tables)) {
+    tables[key] = applyMappings(tables[key], mappings);
   }
 
   if (shouldShuffle) {
