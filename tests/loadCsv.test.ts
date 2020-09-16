@@ -87,6 +87,9 @@ test('Loading with all extra options other than shuffle as true should work', ()
   } = loadCsv(filePath, {
     featureColumns: ['lat', 'lng'],
     labelColumns: ['country'],
+    mappings: {
+      country: (name) => (name as string).toUpperCase(),
+    },
     splitTest: true,
     prependOnes: true,
     standardise: true,
@@ -100,8 +103,8 @@ test('Loading with all extra options other than shuffle as true should work', ()
     3
   );
   expect(labels.arraySync()).toMatchObject([
-    ['SomeCountria'],
-    ['SomeOtherCountria'],
+    ['SOMECOUNTRIA'],
+    ['SOMEOTHERCOUNTRIA'],
   ]);
   // @ts-ignore
   expect(testFeatures.arraySync()).toBeDeepCloseTo(
@@ -111,7 +114,7 @@ test('Loading with all extra options other than shuffle as true should work', ()
     ],
     3
   );
-  expect(testLabels.arraySync()).toMatchObject([['Landistan'], ['Landotzka']]);
+  expect(testLabels.arraySync()).toMatchObject([['LANDISTAN'], ['LANDOTZKA']]);
   // @ts-ignore
   expect(mean.arraySync()).toBeDeepCloseTo([-46.482, 52.404], 3);
   // @ts-ignore
