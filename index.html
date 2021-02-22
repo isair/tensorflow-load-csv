@@ -1,0 +1,174 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>tensorflow-load-csv</title>
+	<meta name="description" content="Documentation for tensorflow-load-csv">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">tensorflow-load-csv</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>tensorflow-load-csv</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#tensorflow-load-csv" id="tensorflow-load-csv" style="color: inherit; text-decoration: none;">
+					<h1>tensorflow-load-csv</h1>
+				</a>
+				<p><a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+					<a href="http://www.typescriptlang.org/"><img src="https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg" alt="TypeScript"></a>
+				<a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-f8bc45.svg" alt="code style: prettier"></a></p>
+				<p><img src="https://github.com/isair/tensorflow-load-csv/workflows/Release/badge.svg?branch=master" alt="workflows"></p>
+				<p>A library that aims to remove the overhead of creating tensors from CSV files completely; allowing you to dive right into the fun parts of your ML project.</p>
+				<ul>
+					<li>Lightweight.</li>
+					<li>Fast.</li>
+					<li>Flexible.</li>
+					<li>TypeScript compatible.</li>
+					<li>100% test coverage.</li>
+				</ul>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<p>NPM:</p>
+				<pre><code class="language-sh"><span style="color: #000000">npm install tensorflow-load-csv</span>
+</code></pre>
+				<p>Yarn:</p>
+				<pre><code class="language-sh"><span style="color: #000000">yarn add tensorflow-load-csv</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<p>Simple usage:</p>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">loadCsv</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;tensorflow-load-csv&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">features</span><span style="color: #000000">, </span><span style="color: #0070C1">labels</span><span style="color: #000000"> } = </span><span style="color: #795E26">loadCsv</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;./data.csv&#039;</span><span style="color: #000000">, {</span>
+<span style="color: #000000">  </span><span style="color: #001080">featureColumns:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;lat&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;lng&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;height&#039;</span><span style="color: #000000">],</span>
+<span style="color: #000000">  </span><span style="color: #001080">labelColumns:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;temperature&#039;</span><span style="color: #000000">],</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #001080">features</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
+<span style="color: #001080">labels</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
+</code></pre>
+				<p>Advanced usage:</p>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">loadCsv</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;tensorflow-load-csv&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0070C1">features</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0070C1">labels</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0070C1">testFeatures</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0070C1">testLabels</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0070C1">mean</span><span style="color: #000000">, </span><span style="color: #008000">// tensor holding mean of features, ignores testFeatures</span>
+<span style="color: #000000">  </span><span style="color: #0070C1">variance</span><span style="color: #000000">, </span><span style="color: #008000">// tensor holding variance of features, ignores testFeatures</span>
+<span style="color: #000000">} = </span><span style="color: #795E26">loadCsv</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;./data.csv&#039;</span><span style="color: #000000">, {</span>
+<span style="color: #000000">  </span><span style="color: #001080">featureColumns:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;lat&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;lng&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;height&#039;</span><span style="color: #000000">],</span>
+<span style="color: #000000">  </span><span style="color: #001080">labelColumns:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;temperature&#039;</span><span style="color: #000000">],</span>
+<span style="color: #000000">  </span><span style="color: #001080">mappings:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">height</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">ft</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">ft</span><span style="color: #000000"> * </span><span style="color: #098658">0.3048</span><span style="color: #000000">, </span><span style="color: #008000">// feet to meters</span>
+<span style="color: #000000">    </span><span style="color: #795E26">temperature</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">f</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> (</span><span style="color: #001080">f</span><span style="color: #000000"> - </span><span style="color: #098658">32</span><span style="color: #000000">) / </span><span style="color: #098658">1.8</span><span style="color: #000000">, </span><span style="color: #008000">// fahrenheit to celsius</span>
+<span style="color: #000000">  }, </span><span style="color: #008000">// Map values based on which column they are in before they are loaded into tensors.</span>
+<span style="color: #000000">  </span><span style="color: #001080">shuffle:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Pass true to shuffle with a fixed seed, or a string to use it as a seed for the shuffling.</span>
+<span style="color: #000000">  </span><span style="color: #001080">splitTest:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Splits your data in half. You can also provide a certain row count for the test data, or a percentage string (e.g. 10%).</span>
+<span style="color: #000000">  </span><span style="color: #001080">prependOnes:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Prepends a column of 1s to your features and testFeatures tensors, useful for linear regression.</span>
+<span style="color: #000000">  </span><span style="color: #001080">standardise:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Calculates mean and variance for each feature column using data only in features, then standardises the values in features and testFeatures. Does not touch labels.</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #001080">features</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
+<span style="color: #001080">labels</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
+
+<span style="color: #001080">testFeatures</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
+<span style="color: #001080">testLabels</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
+
+<span style="color: #001080">mean</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
+<span style="color: #001080">variance</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Modules</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/index.html">index</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/loadcsv_models.html">load<wbr>Csv.models</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
