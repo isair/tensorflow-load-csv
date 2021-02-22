@@ -60,7 +60,7 @@ const {
     temperature: (f) => (f - 32) / 1.8, // fahrenheit to celsius
   }, // Map values based on which column they are in before they are loaded into tensors.
   shuffle: true, // Pass true to shuffle with a fixed seed, or a string to use it as a seed for the shuffling.
-  splitTest: true, // Splits your data in half. You can also provide a certain row count for the test data.
+  splitTest: true, // Splits your data in half. You can also provide a certain row count for the test data, or a percentage string (e.g. 10%).
   prependOnes: true, // Prepends a column of 1s to your features and testFeatures tensors, useful for linear regression.
   standardise: true, // Calculates mean and variance for each feature column using data only in features, then standardises the values in features and testFeatures. Does not touch labels.
 });

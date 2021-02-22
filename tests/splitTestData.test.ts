@@ -79,3 +79,25 @@ test('Splitting less than or equal to 0 places all rows into normal data', () =>
     expect(testLabels).toMatchObject([]);
   });
 });
+
+test('Using a percentage works', () => {
+  const { features, labels, testFeatures, testLabels } = splitTestData(
+    tables.features,
+    tables.labels,
+    '25%'
+  );
+  expect(features).toMatchObject([
+    [1, 2],
+    [3, 4],
+    [5, 6],
+  ]);
+  expect(labels).toMatchObject([[9], [10], [11]]);
+  expect(testFeatures).toMatchObject([[7, 8]]);
+  expect(testLabels).toMatchObject([[12]]);
+});
+
+test('Passing a string that is not a percentage throws an error', () => {
+  expect(() => splitTestData(tables.features, tables.labels, 'hello')).toThrow(
+    'When test length is a string, it must be a percentage ending with %'
+  );
+});

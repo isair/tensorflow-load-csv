@@ -24,8 +24,10 @@ export interface CsvReadOptions {
    * If true, splits your features and labels in half and moves them into testFeatures and testLabels.
    *
    * If a number value is provided, splits that many rows and moved them into testFeatures and testLabels instead.
+   *
+   * You can also pass it a percentage string, e.g. 10%. An error will be thrown if the string is not formatted correctly.
    */
-  splitTest?: boolean | number;
+  splitTest?: true | number | string;
   /**
    * If true, prepends a column of 1s to your features and testFeatures tensors.
    */
