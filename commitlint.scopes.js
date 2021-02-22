@@ -8,4 +8,5 @@ module.exports = [
   'asset',
   'lib',
   'release',
+  'gh-pages',
 ];

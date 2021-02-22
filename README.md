@@ -14,6 +14,10 @@ A library that aims to remove the overhead of creating tensors from CSV files co
 - TypeScript compatible.
 - 100% test coverage.
 
+## Documentation
+
+You can find the docs [here](https://barissencan.com/tensorflow-load-csv/).
+
 ## Installation
 
 NPM:
