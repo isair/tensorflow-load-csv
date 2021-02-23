@@ -1,12 +1,12 @@
 import fs from 'fs';
 
 import * as tf from '@tensorflow/tfjs';
-import { shuffle } from 'shuffle-seed';
 
 import { CsvReadOptions, CsvTable } from './loadCsv.models';
 import filterColumns from './filterColumns';
 import splitTestData from './splitTestData';
 import applyMappings from './applyMappings';
+import shuffle from './shuffle';
 
 const defaultShuffleSeed = 'mncv9340ur';
 

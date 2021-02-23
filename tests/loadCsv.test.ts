@@ -37,18 +37,18 @@ test('Shuffling should work and preserve feature - label pairs', () => {
   // @ts-ignore
   expect(features.arraySync()).toBeDeepCloseTo(
     [
-      [102, -164],
       [5, 40.34],
       [0.234, 1.47],
       [-93.2, 103.34],
+      [102, -164],
     ],
     3
   );
   expect(labels.arraySync()).toMatchObject([
-    ['Landotzka'],
     ['Landistan'],
     ['SomeCountria'],
     ['SomeOtherCountria'],
+    ['Landotzka'],
   ]);
 });
 
@@ -61,18 +61,18 @@ test('Shuffling with a custom seed should work', () => {
   // @ts-ignore
   expect(features.arraySync()).toBeDeepCloseTo(
     [
-      [5, 40.34],
-      [102, -164],
-      [0.234, 1.47],
       [-93.2, 103.34],
+      [102, -164],
+      [5, 40.34],
+      [0.234, 1.47],
     ],
     3
   );
   expect(labels.arraySync()).toMatchObject([
-    ['Landistan'],
-    ['Landotzka'],
-    ['SomeCountria'],
     ['SomeOtherCountria'],
+    ['Landotzka'],
+    ['Landistan'],
+    ['SomeCountria'],
   ]);
 });
 

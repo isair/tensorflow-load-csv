@@ -8,7 +8,7 @@
 
 A library that aims to remove the overhead of creating tensors from CSV files completely; allowing you to dive right into the fun parts of your ML project.
 
-- Lightweight.
+- [Lightweight](https://bundlephobia.com/result?p=tensorflow-load-csv).
 - Fast.
 - Flexible.
 - TypeScript compatible.
@@ -21,11 +21,13 @@ You can find the docs [here](https://barissencan.com/tensorflow-load-csv/).
 ## Installation
 
 NPM:
+
 ```sh
 npm install tensorflow-load-csv
 ```
 
 Yarn:
+
 ```sh
 yarn add tensorflow-load-csv
 ```
@@ -33,6 +35,7 @@ yarn add tensorflow-load-csv
 ## Usage
 
 Simple usage:
+
 ```js
 import loadCsv from 'tensorflow-load-csv';
 
@@ -46,6 +49,7 @@ labels.print();
 ```
 
 Advanced usage:
+
 ```js
 import loadCsv from 'tensorflow-load-csv';
 
