@@ -84,6 +84,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="loadcsv_models.csvreadoptions.html#featurecolumns" class="tsd-kind-icon">feature<wbr>Columns</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="loadcsv_models.csvreadoptions.html#flatten" class="tsd-kind-icon">flatten</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="loadcsv_models.csvreadoptions.html#labelcolumns" class="tsd-kind-icon">label<wbr>Columns</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="loadcsv_models.csvreadoptions.html#mappings" class="tsd-kind-icon">mappings</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="loadcsv_models.csvreadoptions.html#prependones" class="tsd-kind-icon">prepend<wbr>Ones</a></li>
@@ -103,7 +104,7 @@
 					<div class="tsd-signature tsd-kind-icon">feature<wbr>Columns<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/079037d/src/loadCsv.models.ts#L5">loadCsv.models.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/4ea69b3/src/loadCsv.models.ts#L5">loadCsv.models.ts:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -113,12 +114,28 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="flatten" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> flatten</h3>
+					<div class="tsd-signature tsd-kind-icon">flatten<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/4ea69b3/src/loadCsv.models.ts#L46">loadCsv.models.ts:46</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Useful for classification problems, if you have mapped a column&#39;s values to an array using <code>mappings</code>, you can choose to flatten it here so that each element becomes a new column.</p>
+						</div>
+						<p>Throws an error if any of the values in the given column is not an array, or their sizes differ from each other.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="labelcolumns" class="tsd-anchor"></a>
 					<h3>label<wbr>Columns</h3>
 					<div class="tsd-signature tsd-kind-icon">label<wbr>Columns<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/079037d/src/loadCsv.models.ts#L9">loadCsv.models.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/4ea69b3/src/loadCsv.models.ts#L9">loadCsv.models.ts:9</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -133,7 +150,7 @@
 					<div class="tsd-signature tsd-kind-icon">mappings<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/079037d/src/loadCsv.models.ts#L14">loadCsv.models.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/4ea69b3/src/loadCsv.models.ts#L14">loadCsv.models.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -149,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">prepend<wbr>Ones<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/079037d/src/loadCsv.models.ts#L34">loadCsv.models.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/4ea69b3/src/loadCsv.models.ts#L36">loadCsv.models.ts:36</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -164,7 +181,7 @@
 					<div class="tsd-signature tsd-kind-icon">shuffle<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/079037d/src/loadCsv.models.ts#L22">loadCsv.models.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/4ea69b3/src/loadCsv.models.ts#L24">loadCsv.models.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -180,7 +197,7 @@
 					<div class="tsd-signature tsd-kind-icon">split<wbr>Test<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/079037d/src/loadCsv.models.ts#L30">loadCsv.models.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/4ea69b3/src/loadCsv.models.ts#L32">loadCsv.models.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -194,10 +211,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="standardise" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> standardise</h3>
-					<div class="tsd-signature tsd-kind-icon">standardise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+					<div class="tsd-signature tsd-kind-icon">standardise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/079037d/src/loadCsv.models.ts#L38">loadCsv.models.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/isair/tensorflow-load-csv/blob/4ea69b3/src/loadCsv.models.ts#L40">loadCsv.models.ts:40</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -231,6 +248,9 @@
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="loadcsv_models.csvreadoptions.html#featurecolumns" class="tsd-kind-icon">feature<wbr>Columns</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="loadcsv_models.csvreadoptions.html#flatten" class="tsd-kind-icon">flatten</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="loadcsv_models.csvreadoptions.html#labelcolumns" class="tsd-kind-icon">label<wbr>Columns</a>
