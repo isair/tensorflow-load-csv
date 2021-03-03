@@ -1,11 +1,11 @@
-const mulberry32 = (a: number) => () => {
+export const mulberry32 = (a: number) => () => {
   let t = (a += 0x6d2b79f5);
   t = Math.imul(t ^ (t >>> 15), t | 1);
   t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 };
 
-const cyrb53 = (str: string, seed = 0) => {
+export const cyrb53 = (str: string, seed = 0) => {
   let h1 = 0xdeadbeef ^ seed,
     h2 = 0x41c6ce57 ^ seed;
   for (let i = 0, ch; i < str.length; i++) {

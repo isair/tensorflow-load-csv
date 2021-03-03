@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { CsvTable } from '../src/loadCsv.models';
 import applyMappings from '../src/applyMappings';
+import { mulberry32 } from '../src/shuffle';
 
 let data: CsvTable = [];
 
@@ -67,7 +68,7 @@ test('Flattening throws an error when array lengths for the same column differ',
       data,
       {
         height: (ft) => {
-          const arr = new Array(Math.floor(Math.random() * 10));
+          const arr = new Array(Math.floor(mulberry32(Number(ft))() * 10));
           arr[0] = ft;
           return arr;
         },
