@@ -1,0 +1,36 @@
+version: 2
+mergeable:
+  - when: pull_request.*
+    validate:
+      - do: assignee
+        min:
+          count: 1
+      - do: approvals
+        min:
+          count: 1
+        block:
+          changes_requested: true
+      - do: title
+        must_include:
+          regex: '^[a-z]+\([a-z-]+\): [A-Z]{1}(.+)$'
+      - do: dependent
+        changed:
+          file: 'package.json'
+          required: ['package-lock.json']
+
+  - when: schedule.repository
+    validate:
+      - do: stale
+        days: 20
+        type: pull_request, issues
+    pass:
+      - do: comment
+        payload:
+          body: This is old. Is it still relevant?
+
+  - when: pull_request.*, pull_request_review.*, status.*, check_suite.*
+    name: 'Automatically merge pull requests once it passes all checks'
+    validate: []
+    pass:
+      - do: merge
+        merge_method: 'squash'

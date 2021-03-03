@@ -12,7 +12,9 @@ export interface CsvReadOptions {
    * that column will be put through the transformer function and be overwritten with the return value of it.
    */
   mappings?: {
-    [columnName: string]: (value: string | number) => string | number;
+    [columnName: string]: (
+      value: string | number
+    ) => string | number | string[] | number[];
   };
   /**
    * If true, shuffles all rows with a fixed seed, meaning that shuffling the same data will always result in the same shuffled data.
@@ -35,7 +37,13 @@ export interface CsvReadOptions {
   /**
    * If true, calculates mean and variance for each feature column using data only in features, then standardises the values in features and testFeatures. Does not touch labels.
    */
-  standardise?: boolean;
+  standardise?: boolean | string[];
+  /**
+   * Useful for classification problems, if you have mapped a column's values to an array using `mappings`, you can choose to flatten it here so that each element becomes a new column.
+   *
+   * Throws an error if any of the values in the given column is not an array, or their sizes differ from each other.
+   */
+  flatten?: string[];
 }
 
 export type CsvTable = (string | number)[][];

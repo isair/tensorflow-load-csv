@@ -35,6 +35,7 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+    'sonarjs/cognitive-complexity': ['error', 18],
   },
   overrides: [
     {

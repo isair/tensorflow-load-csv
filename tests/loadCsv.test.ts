@@ -5,6 +5,24 @@ import loadCsv from '../src';
 
 const filePath = './assets/csv/simple.csv';
 
+test('Loading an empty table should throw an error', () => {
+  expect(() =>
+    loadCsv('./assets/csv/empty.csv', {
+      featureColumns: ['feature'],
+      labelColumns: ['label'],
+    })
+  ).toThrowError('CSV file can not be shorter than two rows');
+});
+
+test('Loading a table with just headers should throw an error', () => {
+  expect(() =>
+    loadCsv('./assets/csv/headers.csv', {
+      featureColumns: ['feature'],
+      labelColumns: ['label'],
+    })
+  ).toThrowError('CSV file can not be shorter than two rows');
+});
+
 test('Loading with only the required options should work', () => {
   const { features, labels } = loadCsv(filePath, {
     featureColumns: ['lat', 'lng'],

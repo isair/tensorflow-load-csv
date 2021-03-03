@@ -10,18 +10,8 @@ import shuffle from './shuffle';
 
 const defaultShuffleSeed = 'mncv9340ur';
 
-const loadCsv = (filename: string, options: CsvReadOptions) => {
-  const {
-    featureColumns,
-    labelColumns,
-    mappings = {},
-    shuffle: shouldShuffle = false,
-    splitTest = false,
-    prependOnes = false,
-    standardise = false,
-  } = options;
-
-  const data = fs
+const parseCsv = (filename: string) =>
+  fs
     .readFileSync(filename, { encoding: 'utf-8' })
     .split('\n')
     .map((line) => line.split(','))
@@ -35,11 +25,30 @@ const loadCsv = (filename: string, options: CsvReadOptions) => {
           })
     );
 
-  const mappedData = applyMappings(data, mappings);
+const loadCsv = (
+  filename: string,
+  {
+    featureColumns,
+    labelColumns,
+    mappings = {},
+    shuffle: shouldShuffle = false,
+    splitTest,
+    prependOnes = false,
+    standardise = false,
+    flatten = [],
+  }: CsvReadOptions
+) => {
+  const data = parseCsv(filename);
+
+  if (data.length < 2) {
+    throw new Error('CSV file can not be shorter than two rows');
+  }
+
+  applyMappings(data, mappings, new Set(flatten));
 
   const tables: { [key: string]: CsvTable } = {
-    labels: filterColumns(mappedData, labelColumns),
-    features: filterColumns(mappedData, featureColumns),
+    labels: filterColumns(data, labelColumns),
+    features: filterColumns(data, featureColumns),
     testFeatures: [],
     testLabels: [],
   };

@@ -4,7 +4,7 @@ module.exports = [
   'github',
   'script',
   'deps',
-  'dev-deps',
+  'deps-dev',
   'asset',
   'lib',
   'release',
