@@ -35,9 +35,9 @@ export interface CsvReadOptions {
    */
   prependOnes?: boolean;
   /**
-   * If true, calculates mean and variance for each feature column using data only in features, then standardises the values in features and testFeatures. Does not touch labels.
+   * Calculates mean and variance for given columns using data only in features, then standardises the values in features and testFeatures. Does not touch labels.
    */
-  standardise?: boolean | string[];
+  standardise?: string[];
   /**
    * Useful for classification problems, if you have mapped a column's values to an array using `mappings`, you can choose to flatten it here so that each element becomes a new column.
    *
