@@ -7,6 +7,7 @@ import filterColumns from './filterColumns';
 import splitTestData from './splitTestData';
 import applyMappings from './applyMappings';
 import shuffle from './shuffle';
+import standardise from './standardise';
 
 const defaultShuffleSeed = 'mncv9340ur';
 
@@ -31,10 +32,10 @@ const loadCsv = (
     featureColumns,
     labelColumns,
     mappings = {},
-    shuffle: shouldShuffle = false,
+    shuffle: shouldShuffleOrSeed = false,
     splitTest,
     prependOnes = false,
-    standardise = false,
+    standardise: columnsToStandardise = [],
     flatten = [],
   }: CsvReadOptions
 ) => {
@@ -54,11 +55,13 @@ const loadCsv = (
   };
 
   tables.labels.shift();
-  tables.features.shift();
+  const featureColumnNames = tables.features.shift() as string[];
 
-  if (shouldShuffle) {
+  if (shouldShuffleOrSeed) {
     const seed =
-      typeof shouldShuffle === 'string' ? shouldShuffle : defaultShuffleSeed;
+      typeof shouldShuffleOrSeed === 'string'
+        ? shouldShuffleOrSeed
+        : defaultShuffleSeed;
     tables.features = shuffle(tables.features, seed);
     tables.labels = shuffle(tables.labels, seed);
   }
@@ -76,11 +79,14 @@ const loadCsv = (
   const labels = tf.tensor(tables.labels);
   const testLabels = tf.tensor(tables.testLabels);
 
-  const { mean, variance } = tf.moments(features, 0);
-
-  if (standardise) {
-    features = features.sub(mean).div(variance.pow(0.5));
-    testFeatures = testFeatures.sub(mean).div(variance.pow(0.5));
+  if (columnsToStandardise.length > 0) {
+    const result = standardise(
+      features,
+      testFeatures,
+      featureColumnNames.map((c) => columnsToStandardise.includes(c))
+    );
+    features = result.features;
+    testFeatures = result.testFeatures;
   }
 
   if (prependOnes) {
@@ -93,8 +99,6 @@ const loadCsv = (
     labels,
     testFeatures,
     testLabels,
-    mean,
-    variance,
   };
 };
 

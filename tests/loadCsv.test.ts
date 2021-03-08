@@ -46,95 +46,54 @@ test('Loading with only the required options should work', () => {
   ]);
 });
 
-test('Shuffling should work and preserve feature - label pairs', () => {
-  const { features, labels } = loadCsv(filePath, {
-    featureColumns: ['lat', 'lng'],
-    labelColumns: ['country'],
-    shuffle: true,
-  });
-  // @ts-ignore
-  expect(features.arraySync()).toBeDeepCloseTo(
-    [
-      [5, 40.34],
-      [0.234, 1.47],
-      [-93.2, 103.34],
-      [102, -164],
-    ],
-    3
-  );
-  expect(labels.arraySync()).toMatchObject([
-    ['Landistan'],
-    ['SomeCountria'],
-    ['SomeOtherCountria'],
-    ['Landotzka'],
-  ]);
-});
-
-test('Shuffling with a custom seed should work', () => {
-  const { features, labels } = loadCsv(filePath, {
-    featureColumns: ['lat', 'lng'],
-    labelColumns: ['country'],
-    shuffle: 'hello-is-it-me-you-are-looking-for',
-  });
-  // @ts-ignore
-  expect(features.arraySync()).toBeDeepCloseTo(
-    [
-      [-93.2, 103.34],
-      [102, -164],
-      [5, 40.34],
-      [0.234, 1.47],
-    ],
-    3
-  );
-  expect(labels.arraySync()).toMatchObject([
-    ['SomeOtherCountria'],
-    ['Landotzka'],
-    ['Landistan'],
-    ['SomeCountria'],
-  ]);
-});
-
-test('Loading with all extra options other than shuffle as true should work', () => {
-  const {
-    features,
-    labels,
-    testFeatures,
-    testLabels,
-    mean,
-    variance,
-  } = loadCsv(filePath, {
+test('Loading with all extra options should work', () => {
+  const { features, labels, testFeatures, testLabels } = loadCsv(filePath, {
     featureColumns: ['lat', 'lng'],
     labelColumns: ['country'],
     mappings: {
       country: (name) => (name as string).toUpperCase(),
+      lat: (lat) => ((lat as number) > 0 ? [0, 1] : [1, 0]), // South or North classification
     },
+    flatten: ['lat'],
+    shuffle: true,
     splitTest: true,
     prependOnes: true,
-    standardise: true,
+    standardise: ['lng'],
   });
   // @ts-ignore
   expect(features.arraySync()).toBeDeepCloseTo(
     [
-      [1, 1, -1],
-      [1, -1, 1],
+      [1, 0, 1, 1],
+      [1, 0, 1, -1],
     ],
     3
   );
-  expect(labels.arraySync()).toMatchObject([
-    ['SOMECOUNTRIA'],
-    ['SOMEOTHERCOUNTRIA'],
-  ]);
+  expect(labels.arraySync()).toMatchObject([['LANDISTAN'], ['SOMECOUNTRIA']]);
   // @ts-ignore
   expect(testFeatures.arraySync()).toBeDeepCloseTo(
     [
-      [1, 1.102, -0.236],
-      [1, 3.178, -4.248],
+      [1, 1, 0, 4.241],
+      [1, 0, 1, -9.514],
     ],
     3
   );
-  expect(testLabels.arraySync()).toMatchObject([['LANDISTAN'], ['LANDOTZKA']]);
+  expect(testLabels.arraySync()).toMatchObject([
+    ['SOMEOTHERCOUNTRIA'],
+    ['LANDOTZKA'],
+  ]);
+});
+
+test('Loading with custom seed should use the custom seed', () => {
+  const { features } = loadCsv(filePath, {
+    featureColumns: ['lat', 'lng'],
+    labelColumns: ['country'],
+    shuffle: true,
+  });
+  const { features: featuresCustom } = loadCsv(filePath, {
+    featureColumns: ['lat', 'lng'],
+    labelColumns: ['country'],
+    shuffle: 'sdhjhdf',
+  });
   // @ts-ignore
-  expect(mean.arraySync()).toBeDeepCloseTo([-46.482, 52.404], 3);
-  // @ts-ignore
-  expect(variance.arraySync()).toBeDeepCloseTo([2182.478, 2594.374], 3);
+  expect(features).not.toBeDeepCloseTo(featuresCustom, 1);
 });
