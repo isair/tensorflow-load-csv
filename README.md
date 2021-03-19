@@ -16,7 +16,7 @@ A library that aims to remove the overhead of creating tensors from CSV files co
 
 ## Documentation
 
-You can find the docs [here](https://barissencan.com/tensorflow-load-csv/).
+You can find the docs [here](https://barissencan.com/tensorflow-load-csv/modules/index.html).
 
 ## Installation
 
