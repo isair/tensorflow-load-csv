@@ -103,14 +103,7 @@
 				<p>Advanced usage:</p>
 				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">loadCsv</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;tensorflow-load-csv&#039;</span><span style="color: #000000">;</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #0070C1">features</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #0070C1">labels</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #0070C1">testFeatures</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #0070C1">testLabels</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #0070C1">mean</span><span style="color: #000000">, </span><span style="color: #008000">// tensor holding mean of features, ignores testFeatures</span>
-<span style="color: #000000">  </span><span style="color: #0070C1">variance</span><span style="color: #000000">, </span><span style="color: #008000">// tensor holding variance of features, ignores testFeatures</span>
-<span style="color: #000000">} = </span><span style="color: #795E26">loadCsv</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;./data.csv&#039;</span><span style="color: #000000">, {</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">features</span><span style="color: #000000">, </span><span style="color: #0070C1">labels</span><span style="color: #000000">, </span><span style="color: #0070C1">testFeatures</span><span style="color: #000000">, </span><span style="color: #0070C1">testLabels</span><span style="color: #000000"> } = </span><span style="color: #795E26">loadCsv</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;./data.csv&#039;</span><span style="color: #000000">, {</span>
 <span style="color: #000000">  </span><span style="color: #001080">featureColumns:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;lat&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;lng&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;height&#039;</span><span style="color: #000000">],</span>
 <span style="color: #000000">  </span><span style="color: #001080">labelColumns:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;temperature&#039;</span><span style="color: #000000">],</span>
 <span style="color: #000000">  </span><span style="color: #001080">mappings:</span><span style="color: #000000"> {</span>
@@ -118,10 +111,10 @@
 <span style="color: #000000">    </span><span style="color: #795E26">temperature</span><span style="color: #001080">:</span><span style="color: #000000"> (</span><span style="color: #001080">f</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> (</span><span style="color: #001080">f</span><span style="color: #000000"> &lt; </span><span style="color: #098658">50</span><span style="color: #000000"> ? [</span><span style="color: #098658">1</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">] : [</span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">]), </span><span style="color: #008000">// cold or hot classification</span>
 <span style="color: #000000">  }, </span><span style="color: #008000">// Map values based on which column they are in before they are loaded into tensors.</span>
 <span style="color: #000000">  </span><span style="color: #001080">flatten:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;temperature&#039;</span><span style="color: #000000">], </span><span style="color: #008000">// Flattens the array result of a mapping so that each member is a new column.</span>
-<span style="color: #000000">  </span><span style="color: #001080">shuffle:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Pass true to shuffle with a fixed seed, or a string to use it as a seed for the shuffling.</span>
-<span style="color: #000000">  </span><span style="color: #001080">splitTest:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Splits your data in half. You can also provide a certain row count for the test data, or a percentage string (e.g. 10%).</span>
-<span style="color: #000000">  </span><span style="color: #001080">prependOnes:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Prepends a column of 1s to your features and testFeatures tensors, useful for linear regression.</span>
-<span style="color: #000000">  </span><span style="color: #001080">standardise:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Calculates mean and variance for each feature column using data only in features, then standardises the values in features and testFeatures. Does not touch labels.</span>
+<span style="color: #000000">  </span><span style="color: #001080">shuffle:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Pass true to shuffle with a fixed seed, or a string to use as a seed for the shuffling.</span>
+<span style="color: #000000">  </span><span style="color: #001080">splitTest:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Splits your data in half. You can also provide a certain row count for the test data, or a percentage string (e.g. &#039;10%&#039;).</span>
+<span style="color: #000000">  </span><span style="color: #001080">standardise:</span><span style="color: #000000"> [</span><span style="color: #A31515">&#039;height&#039;</span><span style="color: #000000">], </span><span style="color: #008000">// Calculates mean and variance for each feature column using data only in features, then standardises the values in features and testFeatures. Does not touch labels.</span>
+<span style="color: #000000">  </span><span style="color: #001080">prependOnes:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Prepends a column of 1s to your features and testFeatures tensors, useful for regression problems.</span>
 <span style="color: #000000">});</span>
 
 <span style="color: #001080">features</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
@@ -129,9 +122,6 @@
 
 <span style="color: #001080">testFeatures</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
 <span style="color: #001080">testLabels</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
-
-<span style="color: #001080">mean</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
-<span style="color: #001080">variance</span><span style="color: #000000">.</span><span style="color: #795E26">print</span><span style="color: #000000">();</span>
 </code></pre>
 			</div>
 		</div>
