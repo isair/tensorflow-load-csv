@@ -45,14 +45,17 @@ const loadCsv = (
     throw new Error('CSV file can not be shorter than two rows');
   }
 
-  applyMappings(data, mappings, new Set(flatten));
-
   const tables: { [key: string]: CsvTable } = {
     labels: filterColumns(data, labelColumns),
     features: filterColumns(data, featureColumns),
     testFeatures: [],
     testLabels: [],
   };
+
+  const flattenSet = new Set(flatten);
+
+  applyMappings(tables.labels, mappings, flattenSet);
+  applyMappings(tables.features, mappings, flattenSet);
 
   tables.labels.shift();
   const featureColumnNames = tables.features.shift() as string[];
