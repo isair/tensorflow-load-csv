@@ -76,33 +76,37 @@ const loadCsv = (
     );
   }
 
-  let features = tf.tensor(tables.features);
-  let testFeatures = tf.tensor(tables.testFeatures);
+  return tf.tidy(() => {
+    let features = tf.tensor(tables.features);
+    let testFeatures = tf.tensor(tables.testFeatures);
 
-  const labels = tf.tensor(tables.labels);
-  const testLabels = tf.tensor(tables.testLabels);
+    const labels = tf.tensor(tables.labels);
+    const testLabels = tf.tensor(tables.testLabels);
 
-  if (columnsToStandardise.length > 0) {
-    const result = standardise(
+    if (columnsToStandardise.length > 0) {
+      const result = standardise(
+        features,
+        testFeatures,
+        featureColumnNames.map((c) => columnsToStandardise.includes(c))
+      );
+      features = result.features;
+      testFeatures = result.testFeatures;
+    }
+
+    if (prependOnes) {
+      features = tf.ones([features.shape[0], 1]).concat(features, 1);
+      testFeatures = tf
+        .ones([testFeatures.shape[0], 1])
+        .concat(testFeatures, 1);
+    }
+
+    return {
       features,
+      labels,
       testFeatures,
-      featureColumnNames.map((c) => columnsToStandardise.includes(c))
-    );
-    features = result.features;
-    testFeatures = result.testFeatures;
-  }
-
-  if (prependOnes) {
-    features = tf.ones([features.shape[0], 1]).concat(features, 1);
-    testFeatures = tf.ones([testFeatures.shape[0], 1]).concat(testFeatures, 1);
-  }
-
-  return {
-    features,
-    labels,
-    testFeatures,
-    testLabels,
-  };
+      testLabels,
+    };
+  });
 };
 
 export default loadCsv;
