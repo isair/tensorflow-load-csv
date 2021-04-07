@@ -1,7 +1,7 @@
 {
   "name": "tensorflow-load-csv",
   "version": "1.0.0",
-  "description": "Create tensors directly from CSV files. Supports operations like standardisation so you can dive right into the fun parts of ML.",
+  "description": "TensorFlow.js CSV loading on steroids. Clean up, normalise, transform, shuffle, and split your data all in a handful of lines and dive right into the fun parts of ML.",
   "main": "dist/lib/index.js",
   "typings": "dist/types/index.d.ts",
   "files": [
