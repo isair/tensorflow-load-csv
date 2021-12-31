@@ -40,7 +40,7 @@
     "@commitlint/config-conventional": "^12.0.0",
     "@tensorflow/tfjs": "^2.1.0",
     "@tensorflow/tfjs-node": "^2.1.0",
-    "@types/jest": "^26.0.8",
+    "@types/jest": "^27.4.0",
     "@types/node": "^14.14.35",
     "@types/shuffle-seed": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^3.8.0",
