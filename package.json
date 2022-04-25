@@ -46,7 +46,7 @@
     "@typescript-eslint/eslint-plugin": "^3.8.0",
     "@typescript-eslint/parser": "^3.7.1",
     "commitlint": "^12.0.1",
-    "eslint": "^6.0.0",
+    "eslint": "^8.14.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-json": "^2.1.2",
